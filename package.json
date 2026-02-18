@@ -1,7 +1,7 @@
 {
   "name": "examples",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -14,7 +14,7 @@
     "test": "npm run test:e2e"
   },
   "dependencies": {
-    "fabkit": "github:fabricatorsltd/fabkit#ae10344278768f4cf23fa05c81346a508fc189ec"
+    "fabkit": "github:fabricatorsltd/fabkit#21e8fac18ff8f02145887d6e61b53dacee88479d"
   },
   "devDependencies": {
     "@iconify/svelte": "^5.2.1",
