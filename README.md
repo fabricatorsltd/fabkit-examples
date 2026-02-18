@@ -1,38 +1,26 @@
-# sv
+# Fabkit Examples
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A Svelte (v5) example project demonstrating Fabkit usage.
 
-## Creating a project
+Setup
+- Install: `npm install`
+- Run dev: `npm run dev`
+- Build: `npm run build`
+- Preview build: `npm run preview`
 
-If you're seeing this, you've probably already done this step. Congrats!
+Using Fabkit
+```js
+// src/routes/+page.svelte or any component
+<script>
+  import { initTheme, Button, Skeleton } from 'fabkit';
+  initTheme({ colors: { primary: '#6366f1' }, dimensions: { borderRadius: 12, spacing: 8 } });
+</script>
 
-```sh
-# create a new project in the current directory
-npx sv create
-
-# create a new project in fabkit
-npx sv create fabkit
+<Skeleton padding={[12,16,12,16]} borderWidth={[1,1,1,1]} borderColor={["#e5e7eb","#e5e7eb","#e5e7eb","#e5e7eb"]} bg="white" bgHover="#f9fafb">
+  <Button>Click me</Button>
+</Skeleton>
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Notes
+- Depends on `fabkit` from GitHub (main branch).
+- Ensure your SSH access to GitHub is configured.
