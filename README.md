@@ -1,6 +1,6 @@
-# Fabkit Examples
+# fabkit Examples
 
-A Svelte (v5) example project demonstrating Fabkit usage.
+A Svelte (v5) example project demonstrating fabkit usage.
 
 Setup
 - Install: `npm install`
@@ -8,7 +8,7 @@ Setup
 - Build: `npm run build`
 - Preview build: `npm run preview`
 
-Using Fabkit
+Using fabkit
 ```js
 // src/routes/+page.svelte or any component
 <script>
