@@ -1,6 +1,6 @@
 <script>
 	import favicon from '$lib/assets/favicon.svg';
-	import EngineDecorator from 'fabkit/components/EngineDecorator.svelte';
+	import { EngineDecorator } from 'fabkit';
 	import { initTheme } from 'fabkit';
 
 	initTheme({
