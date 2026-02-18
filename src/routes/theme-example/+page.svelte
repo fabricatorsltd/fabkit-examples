@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { initTheme, Button, HBox, VBox, TextField, Card, TextRich, Switcher } from 'snt-lib';
+	import { initTheme, Button, HBox, VBox, TextField, Card, TextRich, Switcher } from 'fabkit';
 
 	let customTheme = $state(false);
 	let primaryColor = $state('#6366f1');
@@ -45,7 +45,7 @@
 		<TextRich>
 			<h1>🎨 Brand Theme Example</h1>
 			<p>
-				Questa pagina dimostra come un progetto può inizializzare snt-lib con il proprio tema brand.
+				Questa pagina dimostra come un progetto può inizializzare fabkit con il proprio tema brand.
 			</p>
 		</TextRich>
 
@@ -111,7 +111,7 @@
 				</TextRich>
 				<TextRich>
 					<code
-						><pre>{`import { initTheme } from 'snt-lib';
+						><pre>{`import { initTheme } from 'fabkit';
 
 // Initialize with your brand theme
 initTheme({

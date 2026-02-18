@@ -30,7 +30,7 @@
 		Window,
 		Engine,
 		EventBus
-	} from 'snt-lib';
+	} from 'fabkit';
 
 	let activePage = $state(0);
 

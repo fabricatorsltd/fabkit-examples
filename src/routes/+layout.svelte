@@ -1,7 +1,7 @@
 <script>
 	import favicon from '$lib/assets/favicon.svg';
-	import EngineDecorator from 'snt-lib/components/EngineDecorator.svelte';
-	import { initTheme } from 'snt-lib';
+	import EngineDecorator from 'fabkit/components/EngineDecorator.svelte';
+	import { initTheme } from 'fabkit';
 
 	initTheme({
 		colors: {

@@ -10,8 +10,8 @@ If you're seeing this, you've probably already done this step. Congrats!
 # create a new project in the current directory
 npx sv create
 
-# create a new project in snt-lib
-npx sv create snt-lib
+# create a new project in fabkit
+npx sv create fabkit
 ```
 
 ## Developing

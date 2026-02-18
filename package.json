@@ -14,8 +14,7 @@
     "test": "npm run test:e2e"
   },
   "dependencies": {
-    "snt-lib": "file:../",
-    "fabkit": "github:fabricatorsltd/fabkit#main"
+    "fabkit": "git+ssh://git@github.com/fabricatorsltd/fabkit.git#main"
   },
   "devDependencies": {
     "@iconify/svelte": "^5.2.1",

@@ -6,7 +6,7 @@ export default defineConfig({
     plugins: [sveltekit()],
     resolve: {
         alias: {
-            'snt-lib': path.resolve('../src/lib')
+            'fabkit': path.resolve('../src/lib')
         }
     },
     server: {

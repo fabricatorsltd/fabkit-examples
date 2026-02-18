@@ -1,5 +1,5 @@
 <script>
-	import { VBox } from 'snt-lib';
+	import { VBox } from 'fabkit';
 
 	let { title, description, children } = $props();
 </script>

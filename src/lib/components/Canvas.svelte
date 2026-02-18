@@ -1,7 +1,7 @@
 <script>
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
-	import { Button, HBox, VBox, TextRich, PopOver, Card } from 'snt-lib';
+	import { Button, HBox, VBox, TextRich, PopOver, Card } from 'fabkit';
 	import { fade } from 'svelte/transition';
 	import { goto } from '$app/navigation';
 	import Icon from './Icon.svelte';
