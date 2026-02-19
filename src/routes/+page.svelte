@@ -29,7 +29,11 @@
 		VBox,
 		Window,
 		Engine,
-		EventBus
+		EventBus,
+		PhCheck,
+		PhX,
+		PhList,
+		PhUser
 	} from 'fabkit';
 
 	let activePage = $state(0);
@@ -77,7 +81,7 @@
 			id: 1,
 			text: 'Item 1',
 			shortcut: 'Ctrl+1',
-			icon: 'check',
+			icon: PhCheck,
 			action: () => console.log('Item 1'),
 			submenu: []
 		},
@@ -85,7 +89,7 @@
 			id: 2,
 			text: 'Item 2',
 			shortcut: 'Ctrl+2',
-			icon: 'close',
+			icon: PhX,
 			action: () => console.log('Item 2'),
 			submenu: []
 		},
@@ -93,7 +97,7 @@
 			id: 3,
 			text: 'Item 3',
 			shortcut: 'Ctrl+3',
-			icon: 'menu',
+			icon: PhList,
 			action: () => console.log('Item 3'),
 			submenu: []
 		}
@@ -199,15 +203,19 @@
 								<Button
 									label="Suggested"
 									onclick={() => console.log('ciao')}
-									icon="check"
 									type="suggested"
-								/>
+								>
+									<PhCheck size={16} />
+									<span class="Button-label">Suggested</span>
+								</Button>
 								<Button
 									label="Destructive"
 									onclick={() => console.log('ciao')}
-									icon="close"
 									type="destructive"
-								/>
+								>
+									<PhX size={16} />
+									<span class="Button-label">Destructive</span>
+								</Button>
 							</HBox>
 						</Showcase>
 
@@ -242,7 +250,9 @@
 						</Showcase>
 						<Showcase title="PopOver" description="A component to display a menu">
 							<VBox spacing={20} align="start">
-								<Button onclick={togglePopOver} icon="menu" bind:ref={popOverButton} />
+								<Button onclick={togglePopOver} bind:ref={popOverButton}>
+									<PhList size={18} />
+								</Button>
 
 								{#if popOverShowing}
 									<PopOver attachTo={popOverButton} onclose={togglePopOver}>
@@ -407,7 +417,7 @@
 										label="Name"
 										placeholder="Example with icon"
 										bind:value={textValue}
-										icon="person"
+										icon={PhUser}
 									/>
 								</VBox>
 
@@ -416,7 +426,7 @@
 										label="Name"
 										placeholder="Example with icon (left)"
 										bind:value={textValue}
-										icon="person"
+										icon={PhUser}
 										iconPosition="left"
 									/>
 								</VBox>
@@ -439,7 +449,7 @@
 										label="Example with icon"
 										bind:value={selectValue}
 										options={selectOptions}
-										icon="person"
+										icon={PhUser}
 									/>
 								</VBox>
 
@@ -448,7 +458,7 @@
 										label="Example with icon (left)"
 										bind:value={selectValue}
 										options={selectOptions}
-										icon="person"
+										icon={PhUser}
 										iconPosition="left"
 									/>
 								</VBox>

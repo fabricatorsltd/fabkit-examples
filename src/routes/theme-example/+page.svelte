@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { initTheme, Button, HBox, VBox, TextField, Card, TextRich, Switcher } from 'fabkit';
+	import { initTheme, Button, HBox, VBox, TextField, Card, TextRich, Switcher, PhCheck, PhX } from 'fabkit';
 
 	let customTheme = $state(false);
 	let primaryColor = $state('#6366f1');
@@ -96,8 +96,8 @@
 
 				<HBox spacing={15}>
 					<Button label="Normal" />
-					<Button label="Suggested" type="suggested" icon="check" />
-					<Button label="Destructive" type="destructive" icon="close" />
+					<Button label="Suggested" type="suggested"><PhCheck size={16} /><span class="Button-label">Suggested</span></Button>
+					<Button label="Destructive" type="destructive"><PhX size={16} /><span class="Button-label">Destructive</span></Button>
 				</HBox>
 
 				<TextField label="Sample Input" placeholder="Digita qualcosa..." />
