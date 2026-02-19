@@ -4,19 +4,30 @@
 	import { Button, HBox, VBox, TextRich, PopOver, Card } from 'fabkit';
 	import { fade } from 'svelte/transition';
 	import { goto } from '$app/navigation';
-	import Icon from './Icon.svelte';
-	import materialSymbols from '../icons/material-symbols.json';
+	import {
+		PhGauge,
+		PhChats,
+		PhShareNetwork,
+		PhTarget,
+		PhBriefcase,
+		PhGear,
+		PhArrowsIn,
+		PhArrowsOut,
+		PhTray,
+		PhUser,
+		PhSignOut
+	} from 'fabkit';
 	import { onMount } from 'svelte';
 
 	let {
 		children,
 		navItems = [
-			{ name: 'home', iconName: 'speed-outline', path: '/IC/dashboard' },
-			{ name: 'chats', iconName: 'forum-outline', path: '#', disabled: true },
-			{ name: 'social', iconName: 'share-outline', path: '/IC/dashboard/social' },
-			{ name: 'adjust', iconName: 'target', path: '#', disabled: true },
-			{ name: 'team', iconName: 'work-outline', path: '/IC/dashboard/team' },
-			{ name: 'settings', iconName: 'settings-outline', path: '/IC/dashboard/settings' }
+			{ name: 'home', icon: PhGauge, path: '/' },
+			{ name: 'chats', icon: PhChats, path: '#', disabled: true },
+			{ name: 'social', icon: PhShareNetwork, path: '#', disabled: true },
+			{ name: 'adjust', icon: PhTarget, path: '#', disabled: true },
+			{ name: 'team', icon: PhBriefcase, path: '#', disabled: true },
+			{ name: 'settings', icon: PhGear, path: '#', disabled: true }
 		],
 		activeTab,
 		title = '',
@@ -145,12 +156,14 @@
 						onclick={() => !tab.disabled && goto(tab.path)}
 						onkeydown={(e) => e.key === 'Enter' && !tab.disabled && goto(tab.path)}
 					>
-						<Icon
-							icons={materialSymbols}
-							name={tab.iconName}
-							width="24px"
-							color={$page.url.pathname === tab.path || activeTab === tab.name ? 'white' : 'black'}
-						/>
+						{#if tab.icon}
+							<svelte:component
+								this={tab.icon}
+								size={24}
+								weight={$page.url.pathname === tab.path || activeTab === tab.name ? 'fill' : 'regular'}
+								color={$page.url.pathname === tab.path || activeTab === tab.name ? 'white' : 'black'}
+							/>
+						{/if}
 					</div>
 				{/each}
 			</div>
@@ -184,11 +197,11 @@
 						}}
 						style="color: #6b7280; border-radius: 9999px;"
 					>
-						<Icon
-							icons={materialSymbols}
-							name={paperWidth >= windowWidth - 170 ? 'call-received' : 'arrow-outward'}
-							width="20px"
-						/>
+						{#if paperWidth >= windowWidth - 170}
+							<PhArrowsIn size={20} />
+						{:else}
+							<PhArrowsOut size={20} />
+						{/if}
 					</Button>
 				</div>
 			{/if}
@@ -284,7 +297,7 @@
 									onclick={toggleNotifs}
 									bind:ref={notifsButton}
 								>
-									<Icon icons={materialSymbols} name="inbox" width="20px" />
+									<PhTray size={20} />
 								</Button>
 								{#if notifsShowing}
 									<PopOver
@@ -351,7 +364,7 @@
 											{#if user.avatar && user.avatar !== '...'}
 												<img src={user.avatar} alt={user.name} />
 											{:else}
-												<Icon icons={materialSymbols} name="person" width="24px" color="white" />
+												<PhUser size={24} color="white" />
 											{/if}
 										</div>
 									</button>
@@ -391,7 +404,7 @@
 														onclick={() => goto('/logout')}
 														style="display: flex; align-items: center; justify-content: center; gap: 8px;"
 													>
-														<Icon icons={materialSymbols} name="logout" width="18px" />
+														<PhSignOut size={18} />
 														Esci
 													</button>
 												</VBox>
