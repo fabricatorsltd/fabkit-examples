@@ -99,34 +99,16 @@
 	let textAreaValue = $state('');
 	let numberValue = $state(42);
 	let checkboxValue = $state(false);
-	let checkboxIndeterminate = $state(false);
 	let radioValue = $state('');
 	let tags = $state(['svelte', 'fabkit']);
 	let colorValue = $state('#6366f1');
 	let searchValue = $state('');
 	let selectedFiles = $state([]);
-	let accordionOpen = $state(false);
-	let chipRemoved = $state(false);
 	let tableSelectedRows = $state([]);
 	let switchRowModel = $state(true);
 	let spinRowValue = $state(5);
 	let entryRowValue = $state('');
 	let levelBarValue = $state(0.6);
-
-	let textAreaValue = $state('');
-	let numberValue = $state(42);
-	let checkboxValue = $state(false);
-	let checkboxIndeterminate = $state(false);
-	let radioValue = $state('');
-	let tags = $state(['svelte', 'fabkit']);
-	let colorValue = $state('#6366f1');
-	let searchValue = $state('');
-	let files = $state([]);
-	let switchRowModel = $state(false);
-	let spinRowValue = $state(5);
-	let entryRowValue = $state('');
-	let levelBarValue = $state(0.6);
-	let selectedRows = $state([]);
 
 	// --- CONSTANTS (Static Data) ---
 	// If these lists never change, they don't need $state.
@@ -202,20 +184,16 @@
 		{ label: 'ContextArea', pageId: 15 },
 		{ label: 'Dark Mode', pageId: 16 },
 		{ label: 'Image', pageId: 17 },
-		{ label: 'TextArea', pageId: 18 },
-		{ label: 'NumberField', pageId: 19 },
-		{ label: 'Checkbox & RadioGroup', pageId: 20 },
-		{ label: 'TagsInput', pageId: 21 },
-		{ label: 'ColorPicker', pageId: 22 },
-		{ label: 'SearchField', pageId: 23 },
-		{ label: 'FileChooser', pageId: 24 },
-		{ label: 'Separator & Accordion', pageId: 25 },
-		{ label: 'Tooltip & Chip', pageId: 26 },
-		{ label: 'DataTable', pageId: 27 },
-		{ label: 'Kbd', pageId: 28 },
-		{ label: 'ActionRow & Preferences', pageId: 29 },
-		{ label: 'LevelBar', pageId: 30 },
-		{ label: 'Samples', pageId: 31 },
+		{ label: 'TextArea & NumberField', pageId: 18 },
+		{ label: 'Checkbox & RadioGroup', pageId: 19 },
+		{ label: 'TagsInput & ColorPicker', pageId: 20 },
+		{ label: 'SearchField & FileChooser', pageId: 21 },
+		{ label: 'Separator & Accordion', pageId: 22 },
+		{ label: 'Tooltip & Chip', pageId: 23 },
+		{ label: 'DataTable & Kbd', pageId: 24 },
+		{ label: 'Preferences', pageId: 25 },
+		{ label: 'LevelBar', pageId: 26 },
+		{ label: 'Samples', pageId: 27 },
 	];
 
 	const menuSwitcherItems = [
@@ -1030,157 +1008,6 @@
 									<input type="range" min="0" max="1" step="0.01" bind:value={levelBarValue} style="width:100%;accent-color:var(--action-suggested)" />
 									<p>Value: <u>{Math.round(levelBarValue * 100)}%</u></p>
 								</VBox>
-							</VBox>
-						</Showcase>
-
-						<!-- Samples -->
-						<Showcase title="TextArea" description="Multi-line text input with floating label and auto-resize">
-							<VBox spacing={20} align="fill">
-								<TextArea label="Description" placeholder="Write something…" bind:value={textAreaValue} rows={4} />
-								<TextArea label="Auto-resize" placeholder="This grows as you type…" bind:value={textAreaValue} autoResize />
-								<TextArea label="Read-only" value="This is read-only content." readOnly />
-							</VBox>
-						</Showcase>
-
-						<Showcase title="NumberField" description="Number input with stepper buttons">
-							<VBox spacing={20} align="fill">
-								<NumberField label="Quantity" bind:value={numberValue} min={0} max={100} step={1} />
-								<NumberField label="Step 5" bind:value={numberValue} min={0} max={100} step={5} />
-								<p>Value: <u>{numberValue}</u></p>
-							</VBox>
-						</Showcase>
-
-						<Showcase title="Checkbox & RadioGroup" description="Selection controls">
-							<HBox spacing={40} align="start">
-								<VBox spacing={12} align="start">
-									<Checkbox label="Enabled checkbox" bind:checked={checkboxValue} />
-									<Checkbox label="Indeterminate" indeterminate />
-									<Checkbox label="Disabled" disabled />
-									<p>Checked: <u>{checkboxValue}</u></p>
-								</VBox>
-								<VBox spacing={12} align="start">
-									<RadioGroup bind:value={radioValue} options={radioOptions} name="demo" />
-									<p>Selected: <u>{radioValue || 'none'}</u></p>
-								</VBox>
-							</HBox>
-						</Showcase>
-
-						<Showcase title="TagsInput" description="Add and remove tags inline">
-							<VBox spacing={12} align="fill">
-								<TagsInput bind:tags placeholder="Add tag…" maxTags={8} />
-								<p>Tags: <u>{tags.join(', ')}</u></p>
-							</VBox>
-						</Showcase>
-
-						<Showcase title="ColorPicker" description="Color swatch with hex input">
-							<VBox spacing={12} align="start">
-								<ColorPicker bind:value={colorValue} label="Brand color" />
-								<p>Value: <u>{colorValue}</u></p>
-							</VBox>
-						</Showcase>
-
-						<Showcase title="SearchField" description="Search input with clear button">
-							<VBox spacing={12} align="fill">
-								<SearchField bind:value={searchValue} placeholder="Search…" onSearch={(v) => console.log('search:', v)} />
-								<p>Value: <u>{searchValue || 'empty'}</u></p>
-							</VBox>
-						</Showcase>
-
-						<Showcase title="FileChooser" description="Drop zone with file list">
-							<VBox spacing={12} align="fill">
-								<FileChooser bind:files multiple accept="image/*,.pdf" />
-								<p>Files: <u>{files.length}</u></p>
-							</VBox>
-						</Showcase>
-
-						<Showcase title="Separator & Accordion" description="Dividers and collapsible sections">
-							<VBox spacing={20} align="fill">
-								<Separator label="Section" />
-								<Separator />
-								<VBox spacing={0} align="fill" borderWidth={[1,1,1,1]} borderColor="var(--border-primary)" borderRadius={[8,8,8,8]}>
-									<AccordionItem title="First item" borderRadius={[8,8,0,0]}>
-										<VBox padding={[12,16,12,16]}>
-											<p>Content of the first item. You can put anything here.</p>
-										</VBox>
-									</AccordionItem>
-									<AccordionItem title="Second item">
-										<VBox padding={[12,16,12,16]}>
-											<p>Content of the second accordion item.</p>
-										</VBox>
-									</AccordionItem>
-									<AccordionItem title="Third item" borderRadius={[0,0,8,8]}>
-										<VBox padding={[12,16,12,16]}>
-											<p>Content of the third item.</p>
-										</VBox>
-									</AccordionItem>
-								</VBox>
-							</VBox>
-						</Showcase>
-
-						<Showcase title="Tooltip & Chip" description="Hover labels and pill tags">
-							<VBox spacing={20} align="start">
-								<HBox spacing={12}>
-									<Tooltip text="This is a tooltip" position="top">
-										<Button label="Hover me (top)" />
-									</Tooltip>
-									<Tooltip text="Bottom tooltip" position="bottom">
-										<Button label="Hover me (bottom)" />
-									</Tooltip>
-									<Tooltip text="Right tooltip" position="right">
-										<Button label="Hover me (right)" />
-									</Tooltip>
-								</HBox>
-								<HBox spacing={8} wrap>
-									<Chip label="Default" />
-									<Chip label="Removable" removable onRemove={() => console.log('removed')} />
-									<Chip label="With icon" icon={PhCheck} />
-									<Chip label="Custom color" color="var(--action-suggested)" textColor="#fff" />
-								</HBox>
-							</VBox>
-						</Showcase>
-
-						<Showcase title="DataTable" description="Sortable table with row selection">
-							<DataTable
-								columns={tableColumns}
-								rows={tableRows}
-								selectable
-								bind:selectedRows
-								onRowClick={(row) => console.log('row:', row)}
-							/>
-						</Showcase>
-
-						<Showcase title="Kbd" description="Keyboard shortcut display">
-							<HBox spacing={16} wrap>
-								<Kbd keys={['Ctrl', 'K']} />
-								<Kbd keys={['Ctrl', 'Shift', 'P']} />
-								<Kbd keys={['⌘', 'S']} />
-								<Kbd keys={['Escape']} />
-								<Kbd keys={['F1']} />
-							</HBox>
-						</Showcase>
-
-						<Showcase title="ActionRow & Preferences" description="libadwaita-style preference rows">
-							<PreferencesPage title="Settings" description="Application preferences">
-								<PreferencesGroup title="Appearance" description="Customize the look and feel">
-									<SwitchRow title="Dark mode" subtitle="Use dark color scheme" bind:model={switchRowModel} />
-									<EntryRow title="Display name" subtitle="Your name shown in the app" bind:value={entryRowValue} placeholder="Enter name…" />
-									<SpinRow title="Font size" subtitle="Base font size in pixels" bind:value={spinRowValue} min={10} max={24} step={1} />
-								</PreferencesGroup>
-								<PreferencesGroup title="About">
-									<ActionRow title="Version" subtitle="0.0.7" />
-									<ActionRow title="Open documentation" activatable onclick={() => console.log('docs')} />
-								</PreferencesGroup>
-							</PreferencesPage>
-						</Showcase>
-
-						<Showcase title="LevelBar" description="Segmented or continuous level indicator">
-							<VBox spacing={20} align="fill">
-								<LevelBar value={levelBarValue} />
-								<LevelBar value={0.2} />
-								<LevelBar value={0.9} />
-								<LevelBar value={levelBarValue} segments={5} />
-								<Slider bind:value={levelBarValue} min={0} max={1} />
-								<p>Value: <u>{Math.round(levelBarValue * 100)}%</u></p>
 							</VBox>
 						</Showcase>
 
