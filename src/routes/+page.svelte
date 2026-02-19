@@ -29,6 +29,7 @@
 		VBox,
 		Window,
 		Engine,
+		Image,
 		EventBus,
 		PhCheck,
 		PhX,
@@ -121,7 +122,8 @@
 		{ label: 'Window', pageId: 14 },
 		{ label: 'ContextArea', pageId: 15 },
 		{ label: 'Dark Mode', pageId: 16 },
-		{ label: 'Samples', pageId: 17 }
+		{ label: 'Image', pageId: 17 },
+		{ label: 'Samples', pageId: 18 }
 	];
 
 	const menuSwitcherItems = [
@@ -574,6 +576,181 @@
 									on:change={(e) => (themeSwitcherValue = e.detail)}
 								/>
 								<p>Theme: <u>{themeSwitcherValue ? 'Dark' : 'Light'}</u></p>
+							</VBox>
+						</Showcase>
+
+						<!-- Image -->
+						<Showcase title="Image" description="Versatile image component — fit, placeholder, blur-up, fallback, overlay, zoom">
+							<VBox spacing={30} align="fill">
+
+								<!-- Row 1: fit modes -->
+								<VBox spacing={8} align="fill">
+									<p style="font-weight:600; margin-bottom:4px">object-fit modes (200×140)</p>
+									<HBox spacing={12} wrap>
+										{#each ['cover','contain','fill','scale-down'] as fitMode}
+											<VBox spacing={4} align="center">
+												<Image
+													src="https://picsum.photos/seed/fabkit1/400/300"
+													alt="fit: {fitMode}"
+													fit={fitMode}
+													width={180}
+													height={120}
+													borderRadius={[8,8,8,8]}
+												/>
+												<small style="opacity:.7">{fitMode}</small>
+											</VBox>
+										{/each}
+									</HBox>
+								</VBox>
+
+								<!-- Row 2: aspect ratio helpers -->
+								<VBox spacing={8} align="fill">
+									<p style="font-weight:600; margin-bottom:4px">Aspect ratio helpers (width 200px)</p>
+									<HBox spacing={12} wrap>
+										<VBox spacing={4} align="center">
+											<Image src="https://picsum.photos/seed/fabkit2/400/400" alt="square" square width={140} borderRadius={[8,8,8,8]} />
+											<small style="opacity:.7">square (1:1)</small>
+										</VBox>
+										<VBox spacing={4} align="center">
+											<Image src="https://picsum.photos/seed/fabkit3/300/400" alt="portrait" portrait width={140} borderRadius={[8,8,8,8]} />
+											<small style="opacity:.7">portrait (3:4)</small>
+										</VBox>
+										<VBox spacing={4} align="center">
+											<Image src="https://picsum.photos/seed/fabkit4/800/450" alt="landscape" landscape width={280} borderRadius={[8,8,8,8]} />
+											<small style="opacity:.7">landscape (16:9)</small>
+										</VBox>
+									</HBox>
+								</VBox>
+
+								<!-- Row 3: blur-up -->
+								<VBox spacing={8} align="fill">
+									<p style="font-weight:600; margin-bottom:4px">Blur-up on load</p>
+									<HBox spacing={12}>
+										<VBox spacing={4} align="center">
+											<Image
+												src="https://picsum.photos/seed/fabkit5/600/400"
+												alt="blur-up"
+												blur
+												blurAmount={20}
+												landscape
+												width={280}
+												borderRadius={[8,8,8,8]}
+											/>
+											<small style="opacity:.7">blur=true, blurAmount=20</small>
+										</VBox>
+									</HBox>
+								</VBox>
+
+								<!-- Row 4: placeholder color + fallback -->
+								<VBox spacing={8} align="fill">
+									<p style="font-weight:600; margin-bottom:4px">Placeholder color & fallback on error</p>
+									<HBox spacing={12}>
+										<VBox spacing={4} align="center">
+											<Image
+												src="https://picsum.photos/seed/fabkit6/400/300"
+												alt="placeholder color"
+												placeholderColor="#d4e2ff"
+												width={180}
+												height={120}
+												borderRadius={[8,8,8,8]}
+											/>
+											<small style="opacity:.7">placeholderColor</small>
+										</VBox>
+										<VBox spacing={4} align="center">
+											<Image
+												src="https://INVALID_URL_WILL_FAIL.test/img.jpg"
+												alt="broken image"
+												fallback="https://picsum.photos/seed/fallback/400/300"
+												width={180}
+												height={120}
+												borderRadius={[8,8,8,8]}
+											/>
+											<small style="opacity:.7">fallback on error</small>
+										</VBox>
+										<VBox spacing={4} align="center">
+											<Image
+												src="https://INVALID_URL_WILL_FAIL2.test/img.jpg"
+												alt="broken no fallback"
+												width={180}
+												height={120}
+												borderRadius={[8,8,8,8]}
+											/>
+											<small style="opacity:.7">no fallback → default broken icon</small>
+										</VBox>
+									</HBox>
+								</VBox>
+
+								<!-- Row 5: overlay tint + snippet -->
+								<VBox spacing={8} align="fill">
+									<p style="font-weight:600; margin-bottom:4px">Overlay tint & overlay snippet</p>
+									<HBox spacing={12}>
+										<VBox spacing={4} align="center">
+											<Image
+												src="https://picsum.photos/seed/fabkit7/400/250"
+												alt="tint overlay"
+												landscape
+												width={280}
+												borderRadius={[8,8,8,8]}
+											>
+												{#snippet overlay()}
+													<div style="position:absolute;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;">
+														<div style="color:#fff; font-size:18px; font-weight:700; text-shadow:0 1px 4px rgba(0,0,0,.5)">
+															overlay text
+														</div>
+													</div>
+												{/snippet}
+											</Image>
+											<small style="opacity:.7">overlay tint + content</small>
+										</VBox>
+									</HBox>
+								</VBox>
+
+								<!-- Row 6: zoom on hover + clickable + border radius -->
+								<VBox spacing={8} align="fill">
+									<p style="font-weight:600; margin-bottom:4px">zoomOnHover + border-radius + shadow</p>
+									<HBox spacing={12}>
+										<VBox spacing={4} align="center">
+											<Image
+												src="https://picsum.photos/seed/fabkit8/400/300"
+												alt="zoom on hover"
+												zoomOnHover
+												width={200}
+												height={140}
+												borderRadius={[16,16,16,16]}
+												shadow="0 4px 20px rgba(0,0,0,0.2)"
+											/>
+											<small style="opacity:.7">zoomOnHover</small>
+										</VBox>
+										<VBox spacing={4} align="center">
+											<Image
+												src="https://picsum.photos/seed/fabkit9/400/400"
+												alt="circle"
+												square
+												width={140}
+												borderRadius={[999,999,999,999]}
+												shadow="0 2px 12px rgba(0,0,0,0.15)"
+											/>
+											<small style="opacity:.7">circle (borderRadius 999)</small>
+										</VBox>
+									</HBox>
+								</VBox>
+
+								<!-- Row 7: loading=eager, fetchpriority=high -->
+								<VBox spacing={8} align="fill">
+									<p style="font-weight:600; margin-bottom:4px">loading="eager" + fetchpriority="high"</p>
+									<HBox spacing={12}>
+										<Image
+											src="https://picsum.photos/seed/fabkit10/600/200"
+											alt="eager high priority"
+											lazy={false}
+											fetchpriority="high"
+											width={400}
+											height={100}
+											borderRadius={[8,8,8,8]}
+										/>
+									</HBox>
+								</VBox>
+
 							</VBox>
 						</Showcase>
 
