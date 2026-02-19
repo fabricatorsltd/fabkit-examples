@@ -1,35 +1,34 @@
 <script>
 	import favicon from '$lib/assets/favicon.svg';
-	import { EngineDecorator } from 'fabkit';
-	import { initTheme } from 'fabkit';
+	import { EngineDecorator, initTheme } from 'fabkit';
+	import { onMount } from 'svelte';
 
-	initTheme({
-		colors: {
-			// Semantic Mappings
-			primary: '#ff7d00', // ic-500
-			primaryHover: '#e66b00', // ic-600
-			primaryActive: '#c46854', // ic-700
-			primaryDisabled: '#ffd9a0', // ic-100
-
-			// Full Palette (Original Names)
-			'ic-50': '#ffeed7',
-			'ic-100': '#ffd9a0',
-			'ic-200': '#ffb76f',
-			'ic-300': '#ff9c3e',
-			'ic-400': '#ff8200',
-			'ic-500': '#ff7d00',
-			'ic-600': '#e66b00',
-			'ic-700': '#c46854',
-			'ic-800': '#7a2b2b',
-			'ic-900': '#4a1a1a',
-			paper: '#fbfbfb'
-		},
-		fonts: {
-			primary: "'Saira', sans-serif"
-		},
-		dimensions: {
-			borderRadius: 12
-		}
+	onMount(() => {
+		initTheme({
+			colors: {
+				primary: '#ff7d00',
+				primaryHover: '#e66b00',
+				primaryActive: '#c46854',
+				primaryDisabled: '#ffd9a0',
+				'ic-50': '#ffeed7',
+				'ic-100': '#ffd9a0',
+				'ic-200': '#ffb76f',
+				'ic-300': '#ff9c3e',
+				'ic-400': '#ff8200',
+				'ic-500': '#ff7d00',
+				'ic-600': '#e66b00',
+				'ic-700': '#c46854',
+				'ic-800': '#7a2b2b',
+				'ic-900': '#4a1a1a',
+				paper: '#fbfbfb'
+			},
+			fonts: {
+				primary: "'Saira', sans-serif"
+			},
+			dimensions: {
+				borderRadius: 12
+			}
+		});
 	});
 
 	let { children } = $props();

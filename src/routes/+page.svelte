@@ -142,6 +142,8 @@
 
 	$effect(() => {
 		document.body.classList.toggle('dark', themeSwitcherValue);
+		// Re-apply structural vars for the new color scheme
+		import('fabkit').then(({ initTheme }) => initTheme());
 	});
 
 	function newPage() {
