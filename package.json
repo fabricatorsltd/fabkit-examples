@@ -13,7 +13,7 @@
     "test": "npm run test:e2e"
   },
   "dependencies": {
-    "fabkit": "github:fabricatorsltd/fabkit#a6dd5cc26bfa9a634f853c3e8e07cf0227236a24"
+    "fabkit": "github:fabricatorsltd/fabkit#98fd0a0caa9ed62ea0b1de5b05d4d61bcb3e69e4"
   },
   "devDependencies": {
     "@iconify/svelte": "^5.2.1",
