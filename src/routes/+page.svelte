@@ -760,6 +760,7 @@
 								<Button label="Calculator" onclick={() => goto('/calculator')} />
 								<Button label="Task Manager" onclick={() => goto('/task-manager')} />
 								<Button label="Notepad" onclick={() => goto('/notepad')} />
+								<Button label="Icons" onclick={() => goto('/icons')} />
 							</VBox>
 						</Showcase>
 					</StaticNotebook>
