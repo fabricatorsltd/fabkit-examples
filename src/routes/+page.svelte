@@ -31,10 +31,37 @@
 		Engine,
 		Image,
 		EventBus,
+		// new components
+		TextArea,
+		NumberField,
+		Checkbox,
+		RadioGroup,
+		TagsInput,
+		ColorPicker,
+		SearchField,
+		FileChooser,
+		Separator,
+		Accordion,
+		AccordionItem,
+		Tooltip,
+		Chip,
+		DataTable,
+		Kbd,
+		ActionRow,
+		PreferencesGroup,
+		PreferencesPage,
+		EntryRow,
+		SwitchRow,
+		SpinRow,
+		LevelBar,
 		PhCheck,
 		PhX,
 		PhList,
-		PhUser
+		PhUser,
+		PhGear,
+		PhBell,
+		PhStar,
+		PhHouse
 	} from 'fabkit';
 
 	let activePage = $state(0);
@@ -68,8 +95,60 @@
 	/** @type {boolean} */
 	let themeSwitcherValue = $state(false);
 
+	// --- New component state ---
+	let textAreaValue = $state('');
+	let numberValue = $state(42);
+	let checkboxValue = $state(false);
+	let checkboxIndeterminate = $state(false);
+	let radioValue = $state('');
+	let tags = $state(['svelte', 'fabkit']);
+	let colorValue = $state('#6366f1');
+	let searchValue = $state('');
+	let selectedFiles = $state([]);
+	let accordionOpen = $state(false);
+	let chipRemoved = $state(false);
+	let tableSelectedRows = $state([]);
+	let switchRowModel = $state(true);
+	let spinRowValue = $state(5);
+	let entryRowValue = $state('');
+	let levelBarValue = $state(0.6);
+
+	let textAreaValue = $state('');
+	let numberValue = $state(42);
+	let checkboxValue = $state(false);
+	let checkboxIndeterminate = $state(false);
+	let radioValue = $state('');
+	let tags = $state(['svelte', 'fabkit']);
+	let colorValue = $state('#6366f1');
+	let searchValue = $state('');
+	let files = $state([]);
+	let switchRowModel = $state(false);
+	let spinRowValue = $state(5);
+	let entryRowValue = $state('');
+	let levelBarValue = $state(0.6);
+	let selectedRows = $state([]);
+
 	// --- CONSTANTS (Static Data) ---
 	// If these lists never change, they don't need $state.
+
+	const radioOptions = [
+		{ label: 'Option A', value: 'a' },
+		{ label: 'Option B', value: 'b' },
+		{ label: 'Option C', value: 'c' },
+	];
+
+	const tableColumns = [
+		{ key: 'name', label: 'Name', sortable: true },
+		{ key: 'role', label: 'Role', sortable: true },
+		{ key: 'status', label: 'Status', sortable: false },
+	];
+
+	const tableRows = [
+		{ name: 'Alice', role: 'Admin', status: 'Active' },
+		{ name: 'Bob', role: 'Editor', status: 'Inactive' },
+		{ name: 'Carol', role: 'Viewer', status: 'Active' },
+		{ name: 'Dave', role: 'Editor', status: 'Active' },
+	];
 
 	const menuItems = [
 		{ label: 'Item 1', action: () => console.log('Item 1') },
@@ -123,7 +202,20 @@
 		{ label: 'ContextArea', pageId: 15 },
 		{ label: 'Dark Mode', pageId: 16 },
 		{ label: 'Image', pageId: 17 },
-		{ label: 'Samples', pageId: 18 }
+		{ label: 'TextArea', pageId: 18 },
+		{ label: 'NumberField', pageId: 19 },
+		{ label: 'Checkbox & RadioGroup', pageId: 20 },
+		{ label: 'TagsInput', pageId: 21 },
+		{ label: 'ColorPicker', pageId: 22 },
+		{ label: 'SearchField', pageId: 23 },
+		{ label: 'FileChooser', pageId: 24 },
+		{ label: 'Separator & Accordion', pageId: 25 },
+		{ label: 'Tooltip & Chip', pageId: 26 },
+		{ label: 'DataTable', pageId: 27 },
+		{ label: 'Kbd', pageId: 28 },
+		{ label: 'ActionRow & Preferences', pageId: 29 },
+		{ label: 'LevelBar', pageId: 30 },
+		{ label: 'Samples', pageId: 31 },
 	];
 
 	const menuSwitcherItems = [
@@ -751,6 +843,193 @@
 									</HBox>
 								</VBox>
 
+							</VBox>
+						</Showcase>
+
+						<!-- TextArea & NumberField -->
+						<Showcase title="TextArea & NumberField" description="Multi-line input and stepper field">
+							<VBox spacing={24} align="fill">
+								<VBox spacing={8} align="fill">
+									<TextArea label="Notes" placeholder="Type something…" bind:value={textAreaValue} rows={4} />
+									<TextArea label="Auto-resize" placeholder="Grows as you type…" autoResize />
+								</VBox>
+								<VBox spacing={8} align="fill">
+									<NumberField label="Quantity" bind:value={numberValue} min={0} max={100} step={1} />
+									<NumberField label="With icon" bind:value={numberValue} min={0} max={100} icon={PhStar} iconPosition="left" />
+								</VBox>
+							</VBox>
+						</Showcase>
+
+						<!-- Checkbox & RadioGroup -->
+						<Showcase title="Checkbox & RadioGroup" description="Selection controls">
+							<VBox spacing={20} align="start">
+								<VBox spacing={8} align="start">
+									<Checkbox bind:checked={checkboxValue} label="Enable notifications" />
+									<Checkbox checked={true} label="Already checked" />
+									<Checkbox indeterminate={true} label="Indeterminate state" />
+									<Checkbox disabled={true} label="Disabled" />
+								</VBox>
+								<Separator />
+								<RadioGroup
+									bind:value={radioValue}
+									name="demo-radio"
+									options={[
+										{ label: 'Option A', value: 'a' },
+										{ label: 'Option B', value: 'b' },
+										{ label: 'Option C', value: 'c' },
+									]}
+								/>
+								<p>Selected: <u>{radioValue || 'none'}</u></p>
+							</VBox>
+						</Showcase>
+
+						<!-- TagsInput & ColorPicker -->
+						<Showcase title="TagsInput & ColorPicker" description="Tag editing and color selection">
+							<VBox spacing={24} align="fill">
+								<TagsInput bind:tags placeholder="Add a tag…" />
+								<p>Tags: <u>{tags.join(', ')}</u></p>
+								<Separator />
+								<HBox spacing={16} align="center">
+									<ColorPicker bind:value={colorValue} label="Brand color" />
+									<span>Value: <u>{colorValue}</u></span>
+								</HBox>
+							</VBox>
+						</Showcase>
+
+						<!-- SearchField & FileChooser -->
+						<Showcase title="SearchField & FileChooser" description="Search input and file upload">
+							<VBox spacing={24} align="fill">
+								<SearchField bind:value={searchValue} placeholder="Search components…" onSearch={(v) => console.log('search:', v)} />
+								<p>Query: <u>{searchValue || '—'}</u></p>
+								<Separator />
+								<FileChooser bind:files={selectedFiles} multiple label="Drop files or click to browse" />
+							</VBox>
+						</Showcase>
+
+						<!-- Separator & Accordion -->
+						<Showcase title="Separator & Accordion" description="Dividers and collapsible sections">
+							<VBox spacing={20} align="fill">
+								<Separator />
+								<Separator label="Or continue with" />
+								<Separator orientation="horizontal" />
+								<Separator />
+								<Accordion borderWidth={[1,1,1,1]} borderColor="var(--border-primary)" borderRadius={[8,8,8,8]}> 
+									<AccordionItem title="What is Fabkit?" icon={PhHouse}>
+										Fabkit is a Svelte 5 UI component library with a native desktop feel.
+									</AccordionItem>
+									<AccordionItem title="How do I install it?">
+										Run: <Kbd keys={['npm', 'i', 'fabkit']} />
+									</AccordionItem>
+									<AccordionItem title="Does it support dark mode?">
+										Yes — toggle the `.dark` class on `&lt;html&gt;` and call `initTheme()`.
+									</AccordionItem>
+								</Accordion>
+							</VBox>
+						</Showcase>
+
+						<!-- Tooltip & Chip -->
+						<Showcase title="Tooltip & Chip" description="Hover hints and removable pills">
+							<VBox spacing={24} align="start">
+								<HBox spacing={16} align="center">
+									<Tooltip text="This is a top tooltip" position="top">
+										<Button label="Hover me (top)" />
+									</Tooltip>
+									<Tooltip text="Right side tooltip" position="right">
+										<Button label="Hover me (right)" />
+									</Tooltip>
+									<Tooltip text="Bottom tooltip" position="bottom">
+										<Button label="Hover me (bottom)" />
+									</Tooltip>
+								</HBox>
+								<Separator />
+								<HBox spacing={8} wrap>
+									<Chip label="Svelte" />
+									<Chip label="Fabkit" color="var(--action-suggested)" textColor="#fff" />
+									<Chip label="With icon" icon={PhStar} />
+									<Chip label="Removable" removable onRemove={() => console.log('removed')} />
+									<Chip label="Destructive" color="var(--action-destructive)" textColor="#fff" removable />
+								</HBox>
+							</VBox>
+						</Showcase>
+
+						<!-- DataTable & Kbd -->
+						<Showcase title="DataTable & Kbd" description="Sortable table and keyboard shortcuts">
+							<VBox spacing={24} align="fill">
+								<DataTable
+									columns={[
+										{ key: 'name', label: 'Name', sortable: true },
+										{ key: 'role', label: 'Role', sortable: true },
+										{ key: 'status', label: 'Status', sortable: false },
+									]}
+									rows={[
+										{ name: 'Alice', role: 'Admin', status: 'Active' },
+										{ name: 'Bob', role: 'Editor', status: 'Inactive' },
+										{ name: 'Carol', role: 'Viewer', status: 'Active' },
+										{ name: 'Dave', role: 'Editor', status: 'Active' },
+									]}
+									selectable
+									bind:selectedRows={tableSelectedRows}
+									onRowClick={(row) => console.log('clicked', row)}
+								/>
+								<p>Selected: <u>{tableSelectedRows.length} rows</u></p>
+								<Separator />
+								<HBox spacing={16} align="center" wrap>
+									<Kbd keys={['Ctrl', 'K']} />
+									<Kbd keys={['Ctrl', 'Shift', 'P']} />
+									<Kbd keys={['⌘', 'S']} />
+									<Kbd keys={['Escape']} />
+									<Kbd keys={['F5']} />
+								</HBox>
+							</VBox>
+						</Showcase>
+
+						<!-- Preferences -->
+						<Showcase title="Preferences" description="libadwaita-style settings UI">
+							<PreferencesPage title="Settings" description="Manage your application preferences">
+								<PreferencesGroup title="General" description="Basic application settings">
+									<SwitchRow title="Enable notifications" subtitle="Show desktop notifications" bind:model={switchRowModel} />
+									<EntryRow title="Display name" subtitle="Shown in the title bar" bind:value={entryRowValue} placeholder="Enter name…" />
+									<SpinRow title="Max items" subtitle="Per page limit" bind:value={spinRowValue} min={1} max={100} />
+									<ActionRow title="Clear cache" subtitle="Free up disk space" activatable onclick={() => console.log('clear cache')} />
+								</PreferencesGroup>
+								<PreferencesGroup title="Appearance">
+									<ActionRow title="Theme" subtitle={switchRowModel ? 'Dark' : 'Light'} icon={PhGear}>
+										{#snippet widget()}
+											<Switcher bind:model={switchRowModel} />
+										{/snippet}
+									</ActionRow>
+									<ActionRow title="Accent color" icon={PhBell}>
+										{#snippet widget()}
+											<ColorPicker bind:value={colorValue} />
+										{/snippet}
+									</ActionRow>
+								</PreferencesGroup>
+							</PreferencesPage>
+						</Showcase>
+
+						<!-- LevelBar -->
+						<Showcase title="LevelBar" description="Segmented and continuous progress bars">
+							<VBox spacing={20} align="fill">
+								<VBox spacing={8} align="fill">
+									<p style="font-size:13px;opacity:.6">Auto-color (value 0–1)</p>
+									<LevelBar value={0.1} />
+									<LevelBar value={0.5} />
+									<LevelBar value={0.9} />
+								</VBox>
+								<VBox spacing={8} align="fill">
+									<p style="font-size:13px;opacity:.6">Segmented (segments=5)</p>
+									<LevelBar value={3} max={5} segments={5} />
+								</VBox>
+								<VBox spacing={8} align="fill">
+									<p style="font-size:13px;opacity:.6">Custom color</p>
+									<LevelBar value={0.65} color="var(--action-suggested)" />
+								</VBox>
+								<VBox spacing={8} align="fill">
+									<p style="font-size:13px;opacity:.6">Interactive</p>
+									<LevelBar value={levelBarValue} />
+									<input type="range" min="0" max="1" step="0.01" bind:value={levelBarValue} style="width:100%;accent-color:var(--action-suggested)" />
+									<p>Value: <u>{Math.round(levelBarValue * 100)}%</u></p>
+								</VBox>
 							</VBox>
 						</Showcase>
 
