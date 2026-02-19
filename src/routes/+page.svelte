@@ -1028,7 +1028,7 @@
 </div>
 
 <style>
-	.Toolkit {
+	:global(.Toolkit) {
 		background-color: var(--background-base);
 	}
 </style>

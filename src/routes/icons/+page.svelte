@@ -73,6 +73,7 @@
 			</div>
 		{:else}
 			{#each filtered as icon (icon.name)}
+				{@const IconComp = icon.component}
 				<button
 					class="icon-cell"
 					class:icon-cell--copied={copiedName === icon.name}
@@ -80,7 +81,7 @@
 					title="Click to copy <{icon.name} />"
 				>
 					<div class="icon-cell-icon">
-						<svelte:component this={icon.component} size={iconSize} />
+						<IconComp size={iconSize} />
 					</div>
 					<span class="icon-cell-label">{icon.label}</span>
 					{#if copiedName === icon.name}
