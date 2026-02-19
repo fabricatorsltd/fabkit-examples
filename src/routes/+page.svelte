@@ -141,8 +141,9 @@
 	});
 
 	$effect(() => {
+		// Toggle .dark on <html> so initTheme can detect it correctly
+		document.documentElement.classList.toggle('dark', themeSwitcherValue);
 		document.body.classList.toggle('dark', themeSwitcherValue);
-		// Re-apply structural vars for the new color scheme
 		import('fabkit').then(({ initTheme }) => initTheme());
 	});
 
