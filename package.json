@@ -13,18 +13,18 @@
     "test": "npm run test:e2e"
   },
   "dependencies": {
-    "fabkit": "github:fabricatorsltd/fabkit#1ad88c1377cb42bcd16e5731111e6b422fe20ed3"
+    "fabkit": "github:fabricatorsltd/fabkit#dfd98c2c1b8dfe182e098b313e69dee8108ab710"
   },
   "devDependencies": {
     "@iconify/svelte": "^5.2.1",
     "@iconify/utils": "^3.1.0",
     "@playwright/test": "^1.56.1",
-    "@sveltejs/adapter-auto": "^7.0.0",
-    "@sveltejs/kit": "^2.48.5",
-    "@sveltejs/vite-plugin-svelte": "^6.2.1",
+    "@sveltejs/adapter-auto": "3.2.5",
+    "@sveltejs/kit": "2.48.5",
+    "@sveltejs/vite-plugin-svelte": "5.0.3",
     "prettier": "^3.6.2",
     "prettier-plugin-svelte": "^3.4.0",
-    "svelte": "^5.43.8",
-    "vite": "^7.2.2"
+    "svelte": "5.43.8",
+    "vite": "6.0.11"
   }
 }
