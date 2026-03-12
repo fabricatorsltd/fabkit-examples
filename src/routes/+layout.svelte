@@ -1,13 +1,11 @@
 <script>
+	import '$lib/style/vnt.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import { EngineDecorator, initTheme, VBox } from 'fabkit';
-	import { onMount } from 'svelte';
 	import SiteHeader from '$lib/components/SiteHeader.svelte';
 	import SiteFooter from '$lib/components/SiteFooter.svelte';
 
-	onMount(() => {
-		initTheme();
-	});
+	initTheme();
 
 	let { children } = $props();
 </script>
