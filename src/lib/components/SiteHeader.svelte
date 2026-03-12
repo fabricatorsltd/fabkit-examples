@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { ActionBar, Clamp, HBox, HideBelow, Optional, Text, VBox } from 'fabkit';
-	import { PhAppWindow, PhBookOpen, PhHouse, PhSquaresFour, PhPalette, PhDeviceMobile } from 'fabkit';
+	import { PhBookOpen, PhHouse, PhSquaresFour, PhPalette, PhDeviceMobile } from 'fabkit';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 
 	const navItems = [
@@ -10,8 +10,7 @@
 		{ label: 'Components', icon: PhSquaresFour, onClick: () => goto('/components') },
 		{ label: 'Responsive', icon: PhDeviceMobile, onClick: () => goto('/responsive') },
 		{ label: 'Docs', icon: PhBookOpen, onClick: () => goto('/docs') },
-		{ label: 'Icons', icon: PhPalette, onClick: () => goto('/icons') },
-		{ label: 'Window', icon: PhAppWindow, onClick: () => goto('/window') }
+		{ label: 'Icons', icon: PhPalette, onClick: () => goto('/icons') }
 	];
 
 	let isDocs = $derived($page.url.pathname.startsWith('/docs'));
